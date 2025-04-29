@@ -1,6 +1,9 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Ninjas.Model;
 
+import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -13,6 +16,11 @@ public class NinjaModel {
     private String email;
     private int idade;
 
+    //Muitos ninjas terao uma missao
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") //Foreign key para relacionar tb_cadastro e tb_missoes
+    private MissoesModel missoes;
+
     public NinjaModel() {
     }
 
@@ -21,7 +29,6 @@ public class NinjaModel {
         this.email = email;
         this.idade = idade;
     }
-
 
     public String getNome() {
         return nome;
